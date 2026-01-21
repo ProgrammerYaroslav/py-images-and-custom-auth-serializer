@@ -1,8 +1,8 @@
-# user/views.py
-from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.settings import api_settings
-from user.serializers import AuthTokenSerializer
+from django.urls import path
+from user.views import CreateTokenView
 
-class CreateTokenView(ObtainAuthToken):
-    renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
-    serializer_class = AuthTokenSerializer
+app_name = "user"
+
+urlpatterns = [
+    path("login/", CreateTokenView.as_view(), name="token"),
+]
