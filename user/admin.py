@@ -9,10 +9,10 @@ from user.models import User
 class UserAdmin(BaseUserAdmin):
     # Fix the error: order by email instead of username
     ordering = ("email",)
-    
+
     # Show email in the list view instead of username
     list_display = ("email", "first_name", "last_name", "is_staff")
-    
+
     # Configure the edit form to use email and remove username
     fieldsets = (
         (None, {"fields": ("email", "password")}),
@@ -34,14 +34,21 @@ class UserAdmin(BaseUserAdmin):
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
-    
+
     # Configure the "add user" form
     add_fieldsets = (
         (
             None,
             {
                 "classes": ("wide",),
-                "fields": ("email", "password", "first_name", "last_name", "is_staff", "is_superuser"),
+                "fields": (
+                    "email",
+                    "password",
+                    "first_name",
+                    "last_name",
+                    "is_staff",
+                    "is_superuser",
+                ),
             },
         ),
     )
